@@ -10,6 +10,8 @@ Unfortunately, transitions cannot be applied to the buttons then, but I will wor
 
 The function defaults to ```body``` as parent, which is not recommended to use.
 
+You can play with a demo on my CodePen: https://codepen.io/marimilch/full/yLBbMav :)
+
 # Thank you
 For reading this! Who'd have thought, you'd stumble in here. :)
 
