@@ -2,7 +2,7 @@
 3D-Button Hover Effect for JS
 
 ## Usage
-1. Include this file as a module in your webpage.
+1. Include threedify.js as a module and threedify.css as a stylesheet in your webpage.
 
 2. ```threedify(".myBoxWithButtons", "850px")``` will search in ```.myBoxWithButtons``` for immediate elements with class ```threed``` to apply the effect to. ```850px``` will set the perspective to 850px. Default is 700, so the parameter is optional.
 

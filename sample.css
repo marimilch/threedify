@@ -1,0 +1,78 @@
+:root{
+  --purple: #724;
+  --p-hover: #b68;
+}
+
+button.set{
+  color:white;
+  height:60px;
+  width:60px;
+}
+
+button.threed{
+  background: var(--purple);
+  border: 0;
+  cursor:pointer;
+}
+.box button.threed{
+  height: 50px;
+  width: 50px;
+}
+
+main{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  flex-direction:column;
+}
+.box{
+  display:grid;
+  grid-template-columns:repeat(8,1fr);
+  grid-gap:0;
+}
+
+main{
+  background: #101
+}
+
+body{
+  margin:0;
+}
+
+header{
+  box-sizing:border-box;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  font-weight:bold;
+  color: var(--p-hover);
+  display:flex;
+  justify-content:space-between;
+  align-items: center;
+  width:500px;
+  margin-bottom:20px;
+}
+
+.options label+input{
+  border: none;
+  font-size:16px;
+  padding:5px;
+  width:40px;
+  background: var(--purple);
+  color:white;
+}
+
+/* Override (or expand) default effects */
+button.threedify_release{
+  transition: transform .5s ease, background 2s ease;
+}
+
+button.threedify_click{
+  transition: transform .05s ease-in, background .05s ease;
+  background: #946;
+}
+
+button.threedify_hover{
+  transition: transform 0s ease;
+  background: var(--p-hover);
+}

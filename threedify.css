@@ -1,0 +1,11 @@
+.threedify_release{
+  transition: transform .5s ease;
+}
+
+.threedify_click{
+  transition: transform .05s ease-in;
+}
+
+.threedify_hover{
+  transition: transform 0 ease;
+}
