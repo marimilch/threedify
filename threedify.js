@@ -2,22 +2,24 @@ const clickScale = 0.9;
 const hoverScale = 1.1;
 const clickScaleString = "scale("+clickScale+")";
 const hoverScaleString = "scale("+hoverScale+")";
-const mainTransition = "transform .5s ease, background .5s ease-in";
-const clickTransition = "transform .05s ease-in, background .05s ease-in";
+const mainTransitionClass = "threedify_release";
+const clickTransitionClass = "threedify_click";
+const noTransitionClass = "threedify_hover";
 
 function threed(e){
-  const b = e.target.closest('.threed');
-  const root = document.querySelector("main");
+  const b = e.target.closest(".threed");
+  const root = b.parentNode;
   
   b.style.transform = "";
-  b.style.transition = "transform 0s ease";
+  onlyClass(b, noTransitionClass);
   b.style.zIndex = "2";
   
   const brec = b.getBoundingClientRect();
+  const prec = root.getBoundingClientRect();
   const x = e.clientX - brec.left;
   const y = e.clientY - brec.top;
-  const width = Math.abs(brec.left - brec.right);
-  const height = Math.abs(brec.top - brec.bottom);
+  const width = brec.width;
+  const height = brec.height;
   const midX = width/2;
   const midY = height/2;
   const xDist = x - midX;
@@ -49,7 +51,7 @@ function threed(e){
   const angle = "rotateX("+Math.min(xAngle,max)+"deg) rotateY("+Math.min(yAngle,max)+"deg)";
   const trans = "translateX("+xTrans+"px) translateY("+yTrans+"px)";
   
-  const aMid = (e.clientX+midX) + "px " +  (e.clientY+midY) + "px";
+  const aMid = (brec.left-prec.left+midX) + "px " +  (brec.top-prec.top+midY) + "px";
   
   b.style.transform = trans+" "+angle+" "+hoverScaleString;
   root.style.perspectiveOrigin = aMid;
@@ -57,19 +59,25 @@ function threed(e){
   if(b.closest(".threed:active")){
     pushd(e, false);
   }
-  
-  //console.log(angle); 
+}
+
+function onlyClass(b, c){
+  const cl = b.classList;
+  cl.remove(clickTransitionClass);
+  cl.remove(mainTransitionClass);
+  cl.remove(noTransitionClass);
+  cl.add(c);
 }
 
 function freed(e){
-  const b = e.target.closest('.threed');
-  b.style.transition = mainTransition;
+  const b = e.target.closest(".threed");
+  onlyClass(b,mainTransitionClass);
   b.style.transform = "";
   b.style.zIndex = "";
 }
 
 function pushd(e, setTransition=true){
-  const b = e.target.closest('.threed');
+  const b = e.target.closest(".threed");
   
   const bscale = b.style.transform;
   if(!bscale.includes(clickScaleString)){ 
@@ -77,48 +85,54 @@ function pushd(e, setTransition=true){
   }
   
   if(setTransition){
-    b.style.transition = clickTransition;
+    onlyClass(b, clickTransitionClass);
   }
 }
 
 function released(e){
-  const b = e.target.closest('.threed');
-  b.style.transition = clickTransition;
+  const b = e.target.closest(".threed");
+  onlyClass(b, clickTransitionClass);
   
   const bscale = b.style.transform;
   b.style.transform = bscale.replace(" "+clickScaleString, "");;
 }
 
 //threedify everything
-export function threedify(_parents="body"){
+export function threedify(_parents="body", perspective="700px"){
+  if(_parents.includes(",")){
+    console.warn("Commas in selectors are likely to cause issues.");
+    console.trace();
+  }
   const parents = document.querySelectorAll(_parents);
-  for (let i = 0; i < parents.length; ++i){
+  for(let i = 0; i< parents.length; i++){
     const parent = parents[i];
-    parent.style.perspective = "700px";
+    parent.style.perspective = perspective;
   }
   
   const tbs = document.querySelectorAll(_parents+" > .threed");
   if(tbs.length == 0){
     console.warn("No threed-Buttons in DOM");
+    console.trace();
   }
   for (let i = 0; i < tbs.length; ++i){
     const tb = tbs[i];
 
-    tb.addEventListener('mousemove', (e)=>{
+    tb.classList.add(mainTransitionClass);
+
+    tb.addEventListener("mousemove", (e)=>{
       threed(e);
     });
 
-    tb.addEventListener('mouseout', (e)=>{
+    tb.addEventListener("mouseout", (e)=>{
       freed(e);
     });
 
-    tb.addEventListener('mousedown', (e)=>{
+    tb.addEventListener("mousedown", (e)=>{
       pushd(e);
     });
 
-    tb.addEventListener('mouseup', (e)=>{
+    tb.addEventListener("mouseup", (e)=>{
       released(e);
     });
   }
 }
-

@@ -4,9 +4,9 @@
 ## Usage
 1. Include this file as a module in your webpage.
 
-2. ```threedify(".myBoxWithButtons")``` will search in ```.myBoxWithButtons``` for immediate elements with class ```threed``` to apply the effect to.
+2. ```threedify(".myBoxWithButtons", "850px")``` will search in ```.myBoxWithButtons``` for immediate elements with class ```threed``` to apply the effect to. ```850px``` will set the perspective to 850px. Default is 700, so the parameter is optional.
 
-Unfortunately, transitions cannot be applied to the buttons then, but I will work on it :)
+Transitions can be be overridden with the classes ```threedify_click```, ```threedify_hover``` and ```threedify_release```. The sample shows how exactly.
 
 The function defaults to ```body``` as parent, which is not recommended to use.
 
