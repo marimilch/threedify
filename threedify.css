@@ -1,11 +1,11 @@
-.threedify_release{
+.threed{
   transition: transform .5s ease;
 }
 
-.threedify_click{
-  transition: transform .05s ease-in;
+.threed:hover{
+  transition: transform 0 ease;
 }
 
-.threedify_hover{
-  transition: transform 0 ease;
+.threed:active{
+  transition: transform .05s ease-in;
 }

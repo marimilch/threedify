@@ -6,7 +6,7 @@
 
 2. ```threedify(".myBoxWithButtons", "850px")``` will search in ```.myBoxWithButtons``` for immediate elements with class ```threed``` to apply the effect to. ```850px``` will set the perspective to 850px. Default is 700, so the parameter is optional.
 
-Transitions can be be overridden with the classes ```threedify_click```, ```threedify_hover``` and ```threedify_release```. The sample shows how exactly.
+Transitions can be be overridden with ```:hover```, ```:active``` and so on.
 
 The function defaults to ```body``` as parent, which is not recommended to use.
 

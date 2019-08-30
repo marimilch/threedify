@@ -63,16 +63,16 @@ header{
 }
 
 /* Override (or expand) default effects */
-button.threedify_release{
+button.threed{
   transition: transform .5s ease, background 2s ease;
 }
 
-button.threedify_click{
-  transition: transform .05s ease-in, background .05s ease;
-  background: #946;
-}
-
-button.threedify_hover{
+button.threed:hover, .threed:focus{
   transition: transform 0s ease;
   background: var(--p-hover);
+}
+
+button.threed:active{
+  transition: transform .05s ease-in, background .05s ease;
+  background: #946;
 }

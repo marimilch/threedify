@@ -2,16 +2,16 @@ const clickScale = 0.9;
 const hoverScale = 1.1;
 const clickScaleString = "scale("+clickScale+")";
 const hoverScaleString = "scale("+hoverScale+")";
-const mainTransitionClass = "threedify_release";
-const clickTransitionClass = "threedify_click";
-const noTransitionClass = "threedify_hover";
+// const mainTransitionClass = "threedify_release";
+// const clickTransitionClass = "threedify_click";
+// const noTransitionClass = "threedify_hover";
 
 function threed(e){
   const b = e.target.closest(".threed");
   const root = b.parentNode;
   
   b.style.transform = "";
-  onlyClass(b, noTransitionClass);
+  // onlyClass(b, noTransitionClass);
   b.style.zIndex = "2";
   
   const brec = b.getBoundingClientRect();
@@ -61,17 +61,17 @@ function threed(e){
   }
 }
 
-function onlyClass(b, c){
-  const cl = b.classList;
-  cl.remove(clickTransitionClass);
-  cl.remove(mainTransitionClass);
-  cl.remove(noTransitionClass);
-  cl.add(c);
-}
+// function onlyClass(b, c){
+//   const cl = b.classList;
+//   cl.remove(clickTransitionClass);
+//   cl.remove(mainTransitionClass);
+//   cl.remove(noTransitionClass);
+//   cl.add(c);
+// }
 
 function freed(e){
   const b = e.target.closest(".threed");
-  onlyClass(b,mainTransitionClass);
+  // onlyClass(b,mainTransitionClass);
   b.style.transform = "";
   b.style.zIndex = "";
 }
@@ -85,13 +85,13 @@ function pushd(e, setTransition=true){
   }
   
   if(setTransition){
-    onlyClass(b, clickTransitionClass);
+    // onlyClass(b, clickTransitionClass);
   }
 }
 
 function released(e){
   const b = e.target.closest(".threed");
-  onlyClass(b, clickTransitionClass);
+  // onlyClass(b, clickTransitionClass);
   
   const bscale = b.style.transform;
   b.style.transform = bscale.replace(" "+clickScaleString, "");;
@@ -117,7 +117,7 @@ export function threedify(_parents="body", perspective="700px"){
   for (let i = 0; i < tbs.length; ++i){
     const tb = tbs[i];
 
-    tb.classList.add(mainTransitionClass);
+    // tb.classList.add(mainTransitionClass);
 
     tb.addEventListener("mousemove", (e)=>{
       threed(e);
